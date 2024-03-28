@@ -109,6 +109,8 @@ class ImageRatioField(models.CharField):
                 width, height = (image.width, image.height)
             except AttributeError:
                 width, height = get_backend().get_size(image)
+            except FileNotFoundError:
+                continue
 
             try:
                 # handle corrupt or accidentally removed images

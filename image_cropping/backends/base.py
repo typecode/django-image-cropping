@@ -18,6 +18,7 @@ class ImageBackend(metaclass=abc.ABCMeta):
         "hidden": widgets.HiddenImageCropWidget,
         "ImageField": widgets.ImageCropWidget,
         "ImageCropField": widgets.ImageCropWidget,
+        "StdImageField": widgets.ImageCropWidget,
     }
 
     def __init__(self, **kwargs):
