@@ -16,8 +16,9 @@ class EasyThumbnailsBackend(ImageBackend):
     exceptions_to_catch = (InvalidImageFormatError, IOError)
 
     def get_thumbnail_url(self, image_path, thumbnail_options):
-        thumb = get_thumbnailer(image_path)
-        return thumb.get_thumbnail(thumbnail_options).url
+        thumbnailer = get_thumbnailer(image_path)
+        thumbnailer.thumbnail_storage = thumbnailer.source_storage # use the same storage for thumbnails
+        return thumbnailer.get_thumbnail(thumbnail_options).url
 
     def get_size(self, image):
         return pil_image(image).size
